@@ -1,10 +1,17 @@
 import client from "../db";
+import { QueryResult } from "pg";
 
-const createTables = async () : Promise<{data?:string,err?:Error}> => {
+const createTables = async () : Promise<{data?:QueryResult<any>,err?:any}> => {
     try{
-        return {data:"success"};
+
+        const querystring = "";
+        
+        const data = await client.query(querystring);
+        console.log(data);
+        return {data};
     }
     catch(err) {
+        console.log(err);
         return {err};
     }
 };
