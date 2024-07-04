@@ -19,12 +19,14 @@ app.get('/', (req, res) => {
 
 app.use("/data", dataImportRoutes);
 
-app.listen(8000, async ()=>{
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, async ()=>{
     client.connect((err:any)=>{
         if(err) console.log(err);
         else {
             console.log("Connected to supabase postgres db");
-            console.log("DV server active on port 8000");
+            console.log(`DV server active on port ${PORT}`);
         }
     });
 });
