@@ -26,6 +26,9 @@ app.use(express_1.default.static(path_1.default.join(__dirname, 'client')));
 app.get('/', (req, res) => {
     res.sendFile(path_1.default.join(__dirname, 'client', 'index.html'));
 });
+app.get('/ping', (req, res) => {
+    res.status(200).send("success");
+});
 app.use("/data", dataImportRoutes_1.default);
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {

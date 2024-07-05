@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
 
+app.get('/ping', (req, res) => {
+    res.status(200).send("success");
+  });
+
 app.use("/data", dataImportRoutes);
 
 const PORT = process.env.PORT || 8000;
