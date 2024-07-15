@@ -5,4 +5,8 @@ const dataImportController_1 = require("../controllers/dataImportController");
 const dataImportRoutes = (0, express_1.Router)();
 dataImportRoutes.get("/create-tables", dataImportController_1.dataImportController.createTables);
 dataImportRoutes.get("/fetchTopSellingModels", dataImportController_1.dataImportController.fetchTopSellingModels);
+dataImportRoutes.get("/sales/continent/month", dataImportController_1.dataImportController.monthlySalesByContinent);
+dataImportRoutes.get("/sales/continent/annual", dataImportController_1.dataImportController.annualSalesByContinent);
+dataImportRoutes.get("/sales/continent/quarter", dataImportController_1.dataImportController.quarterlySalesByContinent);
+dataImportRoutes.get("/sales/continent/all", dataImportController_1.dataImportController.fetchAllSalesData);
 exports.default = dataImportRoutes;
