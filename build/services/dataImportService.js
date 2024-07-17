@@ -106,8 +106,11 @@ const fetchAllSalesData = () => __awaiter(void 0, void 0, void 0, function* () {
           country,
           state,
           unitssold,
-          saleamount
+          saleamount,
+          models.modelname
         FROM public.sales
+        JOIN vehiclemodels as models
+        ON sales.modelid = models.modelid
         ORDER BY saledate, continent;
       `;
         const { rows: data } = yield db_1.default.query(queryString);
