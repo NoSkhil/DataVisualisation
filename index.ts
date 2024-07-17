@@ -4,6 +4,7 @@ dotenv.config();
 import cors from 'cors';
 import client from './db';
 import dataImportRoutes from './routes/dataImportRoutes';
+import hrRoutes from './routes/hrRoutes';
 import path from "path";
 
 const app = express();
@@ -22,6 +23,7 @@ app.get('/ping', (req, res) => {
   });
 
 app.use("/data", dataImportRoutes);
+app.use('/hr', hrRoutes);
 
 const PORT = process.env.PORT || 8000;
 
