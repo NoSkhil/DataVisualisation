@@ -105,8 +105,11 @@ const fetchAllSalesData = async (): Promise<{data?: Object[], err?: any}> => {
           country,
           state,
           unitssold,
-          saleamount
+          saleamount,
+          models.modelname
         FROM public.sales
+        JOIN vehiclemodels as models
+        ON sales.modelid = models.modelid
         ORDER BY saledate, continent;
       `;
       const { rows: data } = await client.query(queryString);
