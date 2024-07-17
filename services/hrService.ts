@@ -5,18 +5,32 @@ const fetchAllHRData = async (): Promise<{ data?: any, err?: any }> => {
     try {
 
         const querystring = `
-    SELECT
-        datefilled AS period,
-        position AS department,
-        totalcost,
-        numberofhires,
-        totalcost / numberofhires AS cost_per_hire
-    FROM
-        public.recruitment
-    ORDER BY
+        SELECT 
+        recruitmentid,
+        position,
+        daystofill,
         datefilled,
-        position;
-    
+        totalcost,
+        department,
+        retained,
+        retentioncheckdate,
+        -- Aggregate data
+        COUNT(*) AS numberofhires,
+        SUM(CASE WHEN retained THEN 1 ELSE 0 END) AS hires_retained,
+        (SUM(CASE WHEN retained THEN 1 ELSE 0 END)::decimal / COUNT(*)) * 100 AS retention_rate
+      FROM 
+        public.recruitment
+      GROUP BY 
+        recruitmentid, 
+        position, 
+        daystofill, 
+        datefilled, 
+        totalcost, 
+        department, 
+        retained, 
+        retentioncheckdate
+      ORDER BY 
+        recruitmentid;
     `;
 
         const {rows:data} = await client.query(querystring);

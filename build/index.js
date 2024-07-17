@@ -18,6 +18,7 @@ dotenv_1.default.config();
 const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./db"));
 const dataImportRoutes_1 = __importDefault(require("./routes/dataImportRoutes"));
+const hrRoutes_1 = __importDefault(require("./routes/hrRoutes"));
 const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
@@ -30,6 +31,7 @@ app.get('/ping', (req, res) => {
     res.status(200).send("success");
 });
 app.use("/data", dataImportRoutes_1.default);
+app.use('/hr', hrRoutes_1.default);
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     db_1.default.connect((err) => {
