@@ -5,6 +5,7 @@ import cors from 'cors';
 import client from './db';
 import dataImportRoutes from './routes/dataImportRoutes';
 import hrRoutes from './routes/hrRoutes';
+import financialRoutes from './routes/hrRoutes copy';
 import path from "path";
 
 const app = express();
@@ -24,6 +25,7 @@ app.get('/ping', (req, res) => {
 
 app.use("/data", dataImportRoutes);
 app.use('/hr', hrRoutes);
+app.use('/financial', financialRoutes);
 
 const PORT = process.env.PORT || 8000;
 
