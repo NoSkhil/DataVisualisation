@@ -5,8 +5,9 @@ import cors from 'cors';
 import client from './db';
 import dataImportRoutes from './routes/dataImportRoutes';
 import hrRoutes from './routes/hrRoutes';
-import financialRoutes from './routes/hrRoutes copy';
+import financialRoutes from './routes/financialRoutes';
 import path from "path";
+import manufacturingRoutes from './routes/manufacturingRoutes';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get('/ping', (req, res) => {
 app.use("/data", dataImportRoutes);
 app.use('/hr', hrRoutes);
 app.use('/financial', financialRoutes);
+app.use('/manufacturing', manufacturingRoutes);
 
 const PORT = process.env.PORT || 8000;
 
