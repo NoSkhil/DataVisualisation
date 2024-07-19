@@ -19,8 +19,9 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./db"));
 const dataImportRoutes_1 = __importDefault(require("./routes/dataImportRoutes"));
 const hrRoutes_1 = __importDefault(require("./routes/hrRoutes"));
-const hrRoutes_copy_1 = __importDefault(require("./routes/hrRoutes copy"));
+const financialRoutes_1 = __importDefault(require("./routes/financialRoutes"));
 const path_1 = __importDefault(require("path"));
+const manufacturingRoutes_1 = __importDefault(require("./routes/manufacturingRoutes"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
@@ -33,7 +34,8 @@ app.get('/ping', (req, res) => {
 });
 app.use("/data", dataImportRoutes_1.default);
 app.use('/hr', hrRoutes_1.default);
-app.use('/financial', hrRoutes_copy_1.default);
+app.use('/financial', financialRoutes_1.default);
+app.use('/manufacturing', manufacturingRoutes_1.default);
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     db_1.default.connect((err) => {
